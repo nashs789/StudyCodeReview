@@ -12,13 +12,16 @@
 
 package StringCalc;
 
-import studyCodeReview.errorMsg;
-
 import java.util.regex.Pattern;
 
 public class StringCalc {
     static final Pattern numberPattern = Pattern.compile("^[0-9]*$");
     static final Pattern operatorPattern = Pattern.compile("^[+\\-*/]*$");
+
+    public static final String code1 = "Is Not Valid Number Character";
+    public static final String code2 = "Is Not Valid Operator Character";
+    public static final String code3 = "Is Not Valid String Length";
+    public static final String code4 = "Not Supported Operator";
 
     public static void main(String[] args) throws Exception {
         // String expression = "2 + 3 * 5";
@@ -52,9 +55,8 @@ public class StringCalc {
                 result /= operand;
                 break;
             default:
-                throw new Exception(errorMsg.code4);
+                throw new Exception(code4);
         }
-
         return result;
     }
 
@@ -68,7 +70,7 @@ public class StringCalc {
 
     public static boolean isValidExpressionLength(String[] str) throws Exception{
          if(str.length % 2 == 0) {
-             throw new Exception(errorMsg.code3);
+             throw new Exception(code3);
          }
          return true;
     }
@@ -77,11 +79,11 @@ public class StringCalc {
         for(int idx = 0; idx < str.length; idx++){
             if(idx % 2 == 0){
                 if(!Pattern.matches(numberPattern.pattern(), str[idx])){
-                    throw new Exception(errorMsg.code1);
+                    throw new Exception(code1);
                 }
             } else {
                 if(!Pattern.matches(operatorPattern.pattern(), str[idx])){
-                    throw new Exception(errorMsg.code2);
+                    throw new Exception(code2);
                 }
             }
         }
